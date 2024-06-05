@@ -1,0 +1,50 @@
+#include <stdio.h>
+
+int main()
+{
+    int bilangan[50]; // Deklarasi array dengan ukuran maksimum 50
+    // Deklarasi variabel
+    int indexElementHapus, indexElement, jumlahElement; 
+    
+    // Meminta pengguna memasukkan jumlah elemen dalam array
+    printf("Masukkan Jumlah Element dari Array: ");
+    scanf("%d", &jumlahElement);
+
+    // Meminta pengguna memasukkan elemen-elemen array
+    printf("\nMasukkan %d Element dari Array:\n", jumlahElement);
+    
+    for (indexElement = 0; indexElement < jumlahElement; indexElement++)
+    {
+        printf("bilangan[%d] = ", indexElement);
+        scanf("%d", &bilangan[indexElement]);
+    }
+
+    // Meminta pengguna memasukkan index elemen yang ingin dihapus
+    printf("Masukkan Index dari Array yang ingin Dihapus: ");
+    scanf("%d", &indexElementHapus);
+
+    // Memeriksa apakah index yang dimasukkan valid
+    if (indexElementHapus >= jumlahElement)
+    {
+        // Jika index tidak valid, berikan pesan kesalahan
+        printf("\nElement Tidak Ditemukan");
+    }
+    else
+    {
+        // Menggeser elemen-elemen setelah elemen yang dihapus ke depan
+        for (indexElement = indexElementHapus; indexElement < jumlahElement - 1; indexElement++)
+        {
+            bilangan[indexElement] = bilangan[indexElement + 1]; 
+        }
+
+        // Menampilkan array setelah elemen dihapus
+        printf("\nHasil Penghapusan Array:\n");
+
+        for (indexElement = 0; indexElement < jumlahElement - 1; indexElement++)
+        {
+            printf("bilangan[%d] = ", indexElement);
+            printf("%d \n", bilangan[indexElement]);
+        }
+    }
+    return 0;
+}
