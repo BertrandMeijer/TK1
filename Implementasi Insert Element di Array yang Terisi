@@ -1,0 +1,78 @@
+#include <stdio.h>
+
+#define MAX_SIZE 100 // Maksimum ukuran array
+
+void printArray(int arr[], int size)
+{
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
+void insertElement(int arr[], int *size, int pos, int element)
+{
+    // Jika array sudah penuh
+    if (*size >= MAX_SIZE)
+    {
+        printf("Array sudah penuh. Tidak bisa menambahkan elemen baru.\n");
+        return;
+    }
+
+    // Jika posisi tidak valid
+    if (pos < 0 || pos > *size)
+    {
+        printf("Posisi tidak valid.\n");
+        return;
+    }
+
+    // Menggeser elemen ke kanan
+    for (int i = *size; i > pos; i--)
+    {
+        arr[i] = arr[i - 1];
+    }
+
+    // Menambahkan elemen baru
+    arr[pos] = element;
+    (*size)++; // Menambah ukuran array
+}
+
+int main()
+{
+    int arr[MAX_SIZE];
+    int size;
+    int pos, element;
+
+    printf("Masukkan ukuran array awal: ");
+    scanf("%d", &size);
+
+    // Memastikan ukuran tidak melebihi batas maksimum
+    if (size > MAX_SIZE)
+    {
+        printf("Ukuran array melebihi batas maksimum.\n");
+        return 1;
+    }
+
+    printf("Masukkan elemen-elemen array:\n");
+    for (int i = 0; i < size; i++)
+    {
+        printf("Elemen %d: ", i + 1);
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Array sebelum di-insert: ");
+    printArray(arr, size);
+
+    printf("Masukkan index di mana elemen baru akan dimasukkan: ");
+    scanf("%d", &pos);
+    printf("Masukkan elemen yang akan ditambahkan: ");
+    scanf("%d", &element);
+
+    insertElement(arr, &size, pos, element);
+
+    printf("Array setelah di-insert: ");
+    printArray(arr, size);
+
+    return 0;
+}
